@@ -8,4 +8,4 @@ export class Reimbursement {
     resolver: number; // foreign key -> User
     status: number; // foreign ey -> ReimbursementStatus, not null
     type: number; // foreign key -> ReimbursementType
-  };
+  }

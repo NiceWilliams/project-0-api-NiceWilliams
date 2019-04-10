@@ -14,15 +14,15 @@ app.use((req, res, next) => {
 });
 
 // attach an actual object to req.body
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // attach the specific users session data to req.session
-app.use(sessionMiddleware); 
+app.use(sessionMiddleware);
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(u => u.username === username && u.password === password);
-  
+
     if (user) {
       // attach the user data to the session object
       req.session.user = user;
@@ -30,8 +30,8 @@ app.post('/login', (req, res) => {
     } else {
       res.sendStatus(401);
     }
-  })
-  
+  });
+
 /**
  * Register Routers
  */
