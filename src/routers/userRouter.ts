@@ -29,7 +29,7 @@ userRouter.get('', [authMiddleware(['Admin', 'Finance Manager']), async (req, re
  */
 userRouter.get('/:id', [(req, res, next) => {
    const endpoint = req.session.user;
-    if (endpoint.userId === +req.params.id) {
+    if (endpoint.userid === +req.params.id) {
       next();
     } else if (endpoint.role.role === 'Admin' || endpoint.role.role === 'Finance Manager') {
       next();
@@ -59,7 +59,7 @@ userRouter.post('', (req, res) => {
 
 userRouter.patch('', async (req, res) => {
   const user = req.body;
-  let inUser = await userDao.findUsersById(req.body.userId);
+  let inUser = await userDao.findUsersById(req.body.userid);
   if ((inUser.username !== user.username) && user.username !== undefined) {
     inUser.username = user.username;
   }
@@ -79,7 +79,7 @@ userRouter.patch('', async (req, res) => {
     inUser.user_role = user.user_role;
   }
   await userDao.updateUsers(user.userid, inUser.username, inUser.user_password, inUser.first_name, inUser.last_name, inUser.email, inUser.user_role);
-  inUser = await userDao.findUsersById(req.body.userId);
+  inUser = await userDao.findUsersById(req.body.userid);
   res.json(inUser);
   }
 );
