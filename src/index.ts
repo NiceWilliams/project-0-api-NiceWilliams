@@ -38,4 +38,6 @@ app.post('/login', async (req, res) => {
 app.use('/users', userRouter);
 app.use('/reimbursements', reimbursementRouter);
 // start up the application
-app.listen(8081);
+app.listen(8081, () => {
+  console.log('app started');
+});
