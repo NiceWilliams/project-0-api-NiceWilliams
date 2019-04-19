@@ -3,7 +3,7 @@ const sess = {
     secret: '42',
     cookie: {secure: false},
     resave: false,
-    saveUnitialized: false
+    saveUninitialized: false
 };
 
 export const sessionMiddleware = session(sess);
