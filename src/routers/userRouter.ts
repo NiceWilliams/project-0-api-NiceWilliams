@@ -2,7 +2,7 @@ import express from 'express';
 import { User } from '../model/user';
 import { users } from '../states';
 import { findUsers } from '../dao/user.dao';
-// import { authMiddleware } from '../middleware/auth.middleware';
+import { authMiddleware } from '../middleware/auth.middleware';
 import * as userDao from '../dao/user.dao';
 /**
  * User router will handle all requests starting with
@@ -15,14 +15,13 @@ export const userRouter = express.Router();
  * find all users
  * endpoint: /users
  */
-userRouter.get('',  async (req, res) => {
+userRouter.get('', [authMiddleware(['Admin', 'Finance Manager']), async (req, res) => {
   const users = await findUsers();
     console.log('retreiving all users');
     console.log(users);
     res.json(users);
-  });
+  }]);
 
-  // [authMiddleware(['Admin', 'Finance Manager']),
 
 /**
  * find user by id
