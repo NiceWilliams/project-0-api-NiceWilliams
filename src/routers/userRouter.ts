@@ -16,7 +16,7 @@ export const userRouter = express.Router();
  * endpoint: /users
  */
 userRouter.get('',  async (req, res) => {
-  const users = await findUsers ();
+  const users = await findUsers();
     console.log('retreiving all users');
     console.log(users);
     res.json(users);
